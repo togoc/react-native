@@ -1,30 +1,38 @@
 import React, { Component } from 'react';
-import { Text, View,StyleSheet,Button } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 
-export default class HelloWorldApp extends Component {
+export default class FlatListBasics extends Component {
   render() {
     return (
-        <View style={style.view}>
-          <Text>Hello, world!</Text>
-          <Text style={style.txt}>
-            游戏刚刚开始
-          </Text>
-        </View>
+      <View style={styles.container}>
+        <FlatList
+          data={[
+            {key: 'Devin'},
+            {key: 'Dan'},
+            {key: 'Dominic'},
+            {key: 'Jackson'},
+            {key: 'James'},
+            {key: 'Joel'},
+            {key: 'John'},
+            {key: 'Jillian'},
+            {key: 'Jimmy'},
+            {key: 'Julie'},
+          ]}
+          renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+        />
+      </View>
     );
   }
 }
 
-
-const style = StyleSheet.create({
-  view :{
-    backgroundColor:'gray',
-    flex:1,
-    //  justifyContent: "center",
-      // alignItems: "center",
-      width:'50%',
-      height:'50%'
+const styles = StyleSheet.create({
+  container: {
+   flex: 1,
+   paddingTop: 22
   },
-  txt:{
-    color:'red'
-  }
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
 })
