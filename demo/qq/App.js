@@ -13,7 +13,8 @@ import {
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-
+import returnword from './returnword'
+// import ContactScren from './Contact'
 
 
 
@@ -95,7 +96,22 @@ class Msg extends Component {
 
 
 
-
+class ContactScren extends Component{
+    static navigationOptions={
+        title:"联系人"
+    }
+    render(){
+        return (
+            <View>
+               <Button title="返回"
+               onPress={()=>{
+                console.log(returnword("我"))
+               }}
+               ></Button>
+            </View>
+        )
+    }
+}
 
 
 class HomeScreen extends Component{
@@ -182,24 +198,25 @@ const style = StyleSheet.create({
 
 
 
-class ContactScren extends Component{
-    render(){
-        return (
-            <View>
-                <Text>
-                    contact
-                </Text>
-            </View>
-        )
-    }
-}
-
 
 
 
 const ContactStack = createStackNavigator({
-    Contact:ContactScren
-})
+    Contact:ContactScren,
+},
+{
+    initialRouteName: 'Contact',
+    /* The header config from HomeScreen is now here */
+    defaultNavigationOptions: {
+    headerStyle: {
+    backgroundColor: '#11D6BB',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+    fontWeight: 'bold',
+    },
+    }
+    })
 
 const HomeStack = createStackNavigator({
     Home:HomeScreen
@@ -219,8 +236,13 @@ const HomeStack = createStackNavigator({
     })
 
 const TabNavigator=createBottomTabNavigator({
-    Home:HomeStack,
+    Message:HomeStack,
     Contact:ContactStack
+},{
+    tabBarOptions:{
+        pressColor : 'blue',
+        activeBackgroundColor:'#11D6BB'
+    }
 })
 
 
