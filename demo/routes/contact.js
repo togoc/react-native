@@ -10,9 +10,6 @@ import {
     TouchableNativeFeedback,
     FlatList
 } from 'react-native';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 
 
@@ -109,7 +106,7 @@ class HomeScreen extends Component{
                 <View style={[style.constainer,{width,marginBottom:10}]}>
                     <Msg></Msg>
                 </View>
-                {/* <View style={[style.nav,{width}]} >
+                <View style={[style.nav,{width}]} >
                     <TouchableNativeFeedback
                        onPress={this._onPressButton}
                        background={TouchableNativeFeedback.SelectableBackground()}>
@@ -143,7 +140,7 @@ class HomeScreen extends Component{
                         <Text style={{margin: 0}}>动态</Text>
                     </View>
                     </TouchableNativeFeedback>
-                </View> */}
+                </View>
             </View>
         )
     }
@@ -181,59 +178,3 @@ const style = StyleSheet.create({
 })
 
 
-
-class ContactScren extends Component{
-    render(){
-        return (
-            <View>
-                <Text>
-                    contact
-                </Text>
-            </View>
-        )
-    }
-}
-
-
-
-
-const ContactStack = createStackNavigator({
-    Contact:ContactScren
-})
-
-const HomeStack = createStackNavigator({
-    Home:HomeScreen
-},
-{
-    initialRouteName: 'Home',
-    /* The header config from HomeScreen is now here */
-    defaultNavigationOptions: {
-    headerStyle: {
-    backgroundColor: '#11D6BB',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-    fontWeight: 'bold',
-    },
-    }
-    })
-
-const TabNavigator=createBottomTabNavigator({
-    Home:HomeStack,
-    Contact:ContactStack
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export default createAppContainer(TabNavigator)
