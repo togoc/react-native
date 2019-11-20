@@ -5,16 +5,14 @@ import {
     Text,
     StyleSheet,
     Dimensions,
-    TouchableHighlight,
     Image,
     TouchableNativeFeedback,
-    FlatList
+    FlatList,
+    SectionList
 } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import returnword from './returnword'
-// import ContactScren from './Contact'
 
 
 
@@ -67,26 +65,26 @@ class Msg extends Component {
                 }}
                 background={TouchableNativeFeedback.SelectableBackground()}>
                    <View style={{backgroundColor:'#fff',display:'flex',paddingTop:10}} >
-                                            <View style={[style.flex,{justifyContent:'center',alignItems:'center'}]}>
-                                                <View style={[style.flex,{flexDirection:'row',width:width-20}]}>
-                                                    <Image
-                                                        style={{width:45,height:45,margin:5,borderRadius:5}}
-                                                        source={require('./logo.png')}
-                                                    />
-                                                    <View style={[style.flex,{justifyContent:'center',marginLeft:2}]}>
-                                                        <View  style={[style.flex,{flexDirection:'row',flex:1}]}>
-                                                            <Text style={{flex:4,fontSize:16,color:'#03081B'}}>
-                                                                {item.key}
-                                                            </Text>
-                                                            <Text  style={{flex:1,fontSize:10,color:'#A4A4A4'}}>
-                                                                time
-                                                            </Text>
-                                                        </View>
-                                                        <Text  style={{fontSize:12,color:'#A4A4A4',flex:1}}>Msg</Text>
-                                                    </View>
-                                                </View>
-                                            </View>
-                                        </View>
+                        <View style={[style.flex,{justifyContent:'center',alignItems:'center'}]}>
+                            <View style={[style.flex,{flexDirection:'row',width:width-20}]}>
+                                <Image
+                                    style={{width:45,height:45,margin:5,borderRadius:5}}
+                                    source={require('./logo.png')}
+                                />
+                                <View style={[style.flex,{justifyContent:'center',marginLeft:2}]}>
+                                    <View  style={[style.flex,{flexDirection:'row',flex:1}]}>
+                                        <Text style={{flex:4,fontSize:16,color:'#03081B'}}>
+                                            {item.key}
+                                        </Text>
+                                        <Text  style={{flex:1,fontSize:10,color:'#A4A4A4'}}>
+                                            time
+                                        </Text>
+                                    </View>
+                                    <Text  style={{fontSize:12,color:'#A4A4A4',flex:1}}>Msg</Text>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
                 </TouchableNativeFeedback>
                     }/>
             </View>
@@ -96,6 +94,61 @@ class Msg extends Component {
 
 
 
+
+
+class ContactList extends Component{
+    _extraUniqueKey(item ,index){
+        return "index"+index+item;
+    }
+    render(){
+        const {width} = Dimensions.get('window')
+        return (
+            <View >
+                <SectionList
+                    renderSectionHeader={({ section: { title } }) => (
+                        <Text style={{ fontWeight: "bold",backgroundColor:'#ccc',paddingLeft:20}}>{title}</Text>
+                        )}
+                    renderItem={({ item, index, section }) => 
+                    <TouchableNativeFeedback
+                    onPress={()=>{
+                       alert("你点击的是 "+item)
+                    }}
+                    background={TouchableNativeFeedback.SelectableBackground()}>
+                            <View style={{display:'flex'}}>
+                                   <View style={[style.flex,{justifyContent:'center',alignItems:'center'}]}>
+                                        <View style={[style.flex,{flexDirection:'row',width:width-20}]}>
+                                            <Image
+                                                style={{width:45,height:45,margin:5,borderRadius:5}}
+                                                source={require('./logo.png')}
+                                            />
+                                            <View style={[style.flex,{justifyContent:'center',marginLeft:2,borderTopWidth:1,borderTopColor:'#EDEDED'}]}>
+                                                <View  style={[style.flex,{flexDirection:'row',flex:1}]}>
+                                                    <Text   key={index} style={{flex:4,fontSize:16,color:'#03081B'}}>
+                                                        {item}
+                                                    </Text>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </View>
+                            </View>
+                            </TouchableNativeFeedback>
+                        }
+                    sections={[
+                        {title:"D",data:["Devin","Dan","Dominic"]},
+                        {title:"J",data:["Jillian","Joel","Julie","John"]},
+                        { title: 'Title2', data: ['item3', 'item4'] },
+                        { title: 'Title3', data: ['item5', 'item6'] },
+                    ]}
+                    keyExtractor={(item, index) => item + index}
+                    />
+            </View>
+        )
+    }
+}
+
+  
+
+
 class ContactScren extends Component{
     static navigationOptions={
         title:"联系人"
@@ -103,11 +156,7 @@ class ContactScren extends Component{
     render(){
         return (
             <View>
-               <Button title="返回"
-               onPress={()=>{
-                console.log(returnword("我"))
-               }}
-               ></Button>
+                <ContactList></ContactList>
             </View>
         )
     }
@@ -119,47 +168,12 @@ class HomeScreen extends Component{
         headerTitle:()=><Title></Title>
     }
     render(){
-        const {width,height} = Dimensions.get('window')
+        const {width} = Dimensions.get('window')
         return (
             <View style={[style.home,{width}]}>
                 <View style={[style.constainer,{width,marginBottom:10}]}>
                     <Msg></Msg>
                 </View>
-                {/* <View style={[style.nav,{width}]} >
-                    <TouchableNativeFeedback
-                       onPress={this._onPressButton}
-                       background={TouchableNativeFeedback.SelectableBackground()}>
-                    <View style={{display:'flex',flex:1,justifyContent:'center',alignItems:'center'}}>
-                        <Image
-                                    style={{width:30,height:30}}
-                                    source={require('./logo.png')}
-                                />
-                        <Text style={{margin: 0}}>消息</Text>
-                    </View>
-                    </TouchableNativeFeedback>
-                    <TouchableNativeFeedback
-                       onPress={this._onPressButton}
-                       background={TouchableNativeFeedback.SelectableBackground()}>
-                    <View style={{display:'flex',flex:1,justifyContent:'center',alignItems:'center'}}>
-                        <Image
-                                    style={{width:30,height:30}}
-                                    source={require('./logo.png')}
-                                />
-                        <Text style={{margin: 0}}>联系人</Text>
-                    </View>
-                    </TouchableNativeFeedback>
-                    <TouchableNativeFeedback
-                       onPress={this._onPressButton}
-                       background={TouchableNativeFeedback.SelectableBackground()}>
-                    <View style={{display:'flex',flex:1,justifyContent:'center',alignItems:'center'}}>
-                        <Image
-                                    style={{width:30,height:30}}
-                                    source={require('./logo.png')}
-                                />
-                        <Text style={{margin: 0}}>动态</Text>
-                    </View>
-                    </TouchableNativeFeedback>
-                </View> */}
             </View>
         )
     }
