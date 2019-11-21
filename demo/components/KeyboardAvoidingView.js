@@ -28,3 +28,4 @@ export default class keyboardAvoidingView extends Component {
 }
 // 本组件用于解决一个常见的尴尬问题：手机上弹出的键盘常常会挡住当前的视图。
 // 本组件可以自动根据键盘的位置,调整自身的 height 或底部的 padding,以避免被遮挡。
+// 使用该组件 宽带跟高度最好不要用百分比(会变形)

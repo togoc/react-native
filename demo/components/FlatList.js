@@ -61,14 +61,12 @@ export default class FlatListScreen extends Component {
                   
                     //头部组件。可以是 React Component, 也可以是一个 render 函数，或者渲染好的 element。
                     //头部修改成加载
-                    ListHeaderComponent={()=> <ScrollView
-                        refreshControl={
+                    ListHeaderComponent={()=>
                           <RefreshControl
                             refreshing={this.state.refreshing}
                             // onRefresh={this._onRefresh}
                           />
-                        }
-                      />}
+                    }
                     // 尾部组件。可以是 React Component, 也可以是一个 render 函数，或者渲染好的 element。
                     ListFooterComponent={()=><Text style={{height:25}}>尾部组件</Text>}
                     //多列布局只能在非水平模式下使用，即必须是horizontal={false}。
