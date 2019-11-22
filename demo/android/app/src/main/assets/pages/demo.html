@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body{
+        background-color: gray;
+    }
+    </style>
+</head>
+<body>
+    <h3>这是一个载入本地 HTML 的demo</h3>
+
+    <button class="button">Send</button>
+</body>
+<script>
+   document.querySelector(".button").onclick = function() {
+        console.log("Send post message,this is web");
+        window.ReactNativeWebView.postMessage("Post message from web");
+        var p = document.createElement('p')
+        p.innerHTML="发送数据---"
+        document.body.append(p)
+    }
+
+    document.addEventListener("message", function(event) {
+        console.log("Received post message", event);
+        alert(event.data);
+    }, false);
+
+
+
+</script>
+</html>
