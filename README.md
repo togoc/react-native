@@ -1,5 +1,5 @@
 # react-native
-
+# 放弃了改用 expo 创建demo react-native-cli 创建的坑太多了
 ## demo1:
 
 <div align="center">

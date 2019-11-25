@@ -5,7 +5,6 @@ export default class backHandler extends Component {
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
       }
-    
       componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
       }
